@@ -1,0 +1,104 @@
+@startuml
+left to right direction
+package Model {
+    package WarehouseModel {
+        class User {
+            id : uint
+        }
+
+        class WarehouseHandler {
+            warehouses : vector<Warehouse>
+            locks : vector<Lock>
+        }
+
+        class Lock {
+            warehouseId : uint
+            floorId : uint
+            GoodsCollection : uint
+        }
+
+        class Warehouse {
+            id : uint
+            floors : vector<Floor>
+        }
+
+        class Floor {
+            id : uint
+            goodsCollections : vector<GoodsCollection>
+        }
+
+        class GoodsCollection {
+            id : uint
+            good : Good
+            quantity : uint
+            temperature : float
+            subCollections : vector<GoodsCollection>
+        }
+
+        class Good {
+            goodInformation : GoodInformation
+            expirationDate : date
+        }
+
+        class GoodInformation {
+            name : string
+            weight : float
+            temperatureRange : pair<float, float>
+            volume : float
+        }
+    }
+
+    package Network {
+        class WarehouseServer {
+            +pollRequests()
+            +broadcastUpdate()
+        }
+
+        class WarehouseClient {
+            +sendUpdate()
+            +pollUpdates()
+        }
+    }
+}
+
+package View {
+    class GoodView {
+        +setController(GoodsCollectionController)
+    }
+    class WarehouseView {
+        +setController(WarehouseController)
+    }
+    class GoodCollectionView {
+        +setController(GoodCollectionController)
+    }
+}
+
+package Controller {
+    package UserInputControllers {
+        class WarehouseController {
+            +addView(WarehouseView view)
+            +getFloor(int floorNr)
+        }
+
+        class GoodCollectionController {
+            +addView(GoodCollectionView view)
+            +addSubcontainer(GoodCollection subContainer)
+            +setQuantity(Good good, uint newQuantity)
+        }
+
+        class GoodController {
+            +addView(GoodView view)
+            +setInformation(GoodInformation newInfo)
+            +setExpirationDate(Date newExpirationDate)
+        }
+    }
+
+    package Database {
+        class DatabaseHandler {
+            +save(Warehouse)
+            +load(warehouseId)
+        }
+    }
+}
+
+@enduml
