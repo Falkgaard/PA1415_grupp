@@ -16,23 +16,24 @@ public:
 	
 	size_t addFloor();
 
-	void addGoodsCollection(uint32_t floorNr, GoodsCollection goodsCollection);
+	void addGoodsCollection(uint32_t floorNr);
 	static void setIdCounter(uint32_t value);
 };
 
 class Floor {
 private:
-	uint32_t id;
-	uint32_t goodsCollectionId = 0;
+	const uint32_t id;
+	uint32_t goodsCollectionIdCounter = 0;
 	vector<GoodsCollection> goodsCollections;
 public:
 	Floor(uint32_t id);
-	void addGoodsCollection(GoodsCollection goodsCollection);
+	void addGoodsCollection();
+	
 };
 
 class GoodsCollection {
 private:
-	uint32_t id;
+	const uint32_t id;
 	vector<Good> goods;
 public:
 	GoodsCollection(uint32_t id);
@@ -50,8 +51,6 @@ public:
 
 class GoodInformation {
 private:
-	static uint32_t idCounter;
-	uint32_t id;
 	string name;
 	float weight;
 public:

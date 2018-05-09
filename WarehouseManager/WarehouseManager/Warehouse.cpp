@@ -8,8 +8,8 @@ size_t Warehouse::addFloor() {
 	this->floors.push_back(Floor(floorIdCounter++));
 }
 
-void Warehouse::addGoodsCollection(uint32_t floorNr, GoodsCollection goodsCollection) {
-	this->floors[floorNr].addGoodsCollection(goodsCollection);
+void Warehouse::addGoodsCollection(uint32_t floorNr) {
+	this->floors[floorNr].addGoodsCollection();
 }
 
 void Warehouse::setIdCounter(uint32_t value) {
@@ -23,8 +23,8 @@ Floor::Floor(uint32_t id) : id(id) {
 
 }
 
-void Floor::addGoodsCollection(GoodsCollection goodsCollection) { 
-	this->goodsCollections.push_back(goodsCollection);
+void Floor::addGoodsCollection() {
+	this->goodsCollections.push_back(GoodsCollection(goodsCollectionIdCounter++));
 }
 
 
