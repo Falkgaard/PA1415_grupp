@@ -5,23 +5,29 @@
 
 using namespace std;
 
-class GoodInformation {
+class Warehouse {
 private:
-	string name;
-	float weight;
+	static uint32_t idCounter;
+	const uint32_t id;
+	uint32_t floorIdCounter = 0;
+	vector<Floor> floors;
 public:
-	GoodInformation(string name) : name(name) {};
-	GoodInformation(string name, float weight) : name(name), weight(weight) {};
-	void setWeight(float newWeight) { this->weight = newWeight; };
+	Warehouse();
+	
+	size_t addFloor();
+
+	void addGoodsCollection(uint32_t floorNr, GoodsCollection goodsCollection);
+	static void setIdCounter(uint32_t value);
 };
 
-class Good {
+class Floor {
 private:
-	GoodInformation info;
-	uint32_t quantity;
+	uint32_t id;
+	uint32_t goodsCollectionId = 0;
+	vector<GoodsCollection> goodsCollections;
 public:
-	Good(GoodInformation goodInfo, uint32_t quantity) : info(goodInfo), quantity(quantity) {};
-	void setQuantity(uint32_t newQuantity) { this->quantity = newQuantity; };
+	Floor(uint32_t id);
+	void addGoodsCollection(GoodsCollection goodsCollection);
 };
 
 class GoodsCollection {
@@ -29,32 +35,27 @@ private:
 	uint32_t id;
 	vector<Good> goods;
 public:
-	GoodsCollection(uint32_t id) : id(id) {};
-	void addGood(Good good) { goods.push_back(good); };
+	GoodsCollection(uint32_t id);
+	void addGood(Good good);
 };
 
-class Floor {
+class Good {
 private:
-	uint32_t id;
-	vector<GoodsCollection> goodsCollections;
+	GoodInformation goodInfo;
+	uint32_t quantity;
 public:
-	Floor(uint32_t id) : id(id) {};
-	void addGoodsCollection(GoodsCollection goodsCollection) {  };
+	Good(GoodInformation goodInfo, uint32_t quantity);
+	void setQuantity(uint32_t newQuantity);
 };
 
-class Warehouse {
+class GoodInformation {
 private:
 	static uint32_t idCounter;
-	const uint32_t id;
-
-	vector<Floor> floors;
+	uint32_t id;
+	string name;
+	float weight;
 public:
-	Warehouse() : id(idCounter++) {};
-	
-	size_t addFloor() { 
-		Floor floor(floors.size());
-		floors.push_back(floor);
-	};
-
-	void addGoodsCollection(uint32_t floorNr, GoodsCollection goodsCollection) { floors[floorNr].addGoodsCollection(goodsCollection); };
+	GoodInformation(string name);
+	GoodInformation(string name, float weight);
+	void setWeight(float newWeight);
 };
