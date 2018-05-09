@@ -1,10 +1,12 @@
 #include "Warehouse.h"
 
+uint32_t Warehouse::idCounter = 0;
+
 Warehouse::Warehouse() : id(idCounter++) {
 
 }
 
-size_t Warehouse::addFloor() {
+void Warehouse::addFloor() {
 	this->floors.push_back(Floor(floorIdCounter++));
 }
 
@@ -16,50 +18,6 @@ void Warehouse::setIdCounter(uint32_t value) {
 	Warehouse::idCounter = value;
 }
 
-
-
-
-Floor::Floor(uint32_t id) : id(id) {
-
-}
-
-void Floor::addGoodsCollection() {
-	this->goodsCollections.push_back(GoodsCollection(goodsCollectionIdCounter++));
-}
-
-
-
-
-GoodsCollection::GoodsCollection(uint32_t id) : id(id) {
-
-}
-
-void GoodsCollection::addGood(Good good) {
-	this->goods.push_back(good);
-}
-
-
-
-
-Good::Good(GoodInformation goodInfo, uint32_t quantity) : goodInfo(goodInfo), quantity(quantity) {
-
-}
-
-void Good::setQuantity(uint32_t newQuantity) {
-	this->quantity = newQuantity;
-}
-
-
-
-
-GoodInformation::GoodInformation(string name) : name(name) {
-	this->weight = 0;
-}
-
-GoodInformation::GoodInformation(string name, float weight) : name(name), weight(weight) {
-
-}
-
-void GoodInformation::setWeight(float newWeight) {
-	this->weight = newWeight;
+uint32_t Warehouse::getId() const {
+	return this->id;
 }
