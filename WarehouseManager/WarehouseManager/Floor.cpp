@@ -11,6 +11,7 @@ bool Floor::addGoodsCollection(uint32_t xPos, uint32_t yPos) {
 	bool success = false;
 	if (tileMap[xPos][yPos] == Tile::EmptyShelf) {
 		this->goodsCollections.push_back(GoodsCollection(goodsCollectionIdCounter++));
+		tileMap[xPos][yPos] = Tile::OccupiedShelf;
 		success = true;
 	}
 
@@ -31,4 +32,24 @@ bool Floor::removeShelf(uint32_t xPos, uint32_t yPos) {
 	}
 
 	return tileMap[xPos][yPos] == Tile::NoShelf;
+}
+
+uint32_t Floor::getId() const {
+	return this->id;
+}
+
+uint32_t Floor::getWidth() const {
+	return this->width;
+}
+
+uint32_t Floor::getHeight() const {
+	return this->height;
+}
+
+Floor::Tile Floor::getTile(uint32_t xPos, uint32_t yPos) const throw(...) {
+	if (this->width <= xPos && this->height <= yPos) {
+		throw "Tried to get out of bounds tile";
+	}
+	
+	return tileMap[xPos][yPos];
 }

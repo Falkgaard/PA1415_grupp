@@ -12,7 +12,8 @@ public:
 	enum Tile {
 		NoShelf,
 		EmptyShelf,
-		OccupiedShelf
+		OccupiedShelf,
+		Error
 	};
 private:
 	uint32_t width;
@@ -26,4 +27,8 @@ public:
 	bool addGoodsCollection(uint32_t xPos, uint32_t yPos);
 	bool addShelf(uint32_t xPos, uint32_t yPos);
 	bool removeShelf(uint32_t xPos, uint32_t yPos);
+	uint32_t getId() const;
+	uint32_t getWidth() const;
+	uint32_t getHeight() const;
+	Tile getTile(uint32_t xPos, uint32_t yPos) const throw(...);
 };
