@@ -14,7 +14,7 @@ private:
 public:
 	explicit Warehouse();
 	
-	void addFloor();
+	void addFloor(uint32_t width, uint32_t height);
 	void addGoodsCollection(uint32_t floorNr);
 	static void setIdCounter(uint32_t value);
 	uint32_t getId() const;

@@ -6,8 +6,8 @@ Warehouse::Warehouse() : id(idCounter++) {
 
 }
 
-void Warehouse::addFloor() {
-	this->floors.push_back(Floor(floorIdCounter++));
+void Warehouse::addFloor(uint32_t width, uint32_t height) {
+	this->floors.push_back(Floor(floorIdCounter++, width, height));
 }
 
 void Warehouse::addGoodsCollection(uint32_t floorNr) {
