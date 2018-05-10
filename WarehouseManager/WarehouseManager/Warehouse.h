@@ -15,7 +15,7 @@ public:
 	explicit Warehouse();
 	
 	void addFloor(uint32_t width, uint32_t height);
-	void addGoodsCollection(uint32_t floorNr);
+	void addGoodsCollection(uint32_t floorNr, uint32_t xPos, uint32_t yPos);
 	static void setIdCounter(uint32_t value);
 	uint32_t getId() const;
 };
