@@ -1,7 +1,6 @@
 #pragma once
 #include "Warehouse.h"
 #include <SFML/Graphics.hpp>
-//#include "Controller.h"
 #include "GoodsCollectionView.h"
 
 class WarehouseView : public sf::Drawable {

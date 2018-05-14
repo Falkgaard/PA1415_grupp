@@ -29,10 +29,6 @@ void GoodsCollectionView::fillWindow() {
 	}
 }
 
-void GoodsCollectionView::setController(GoodsCollectionController controller) {
-	this->controller = controller;
-}
-
 void GoodsCollectionView::setGoodsCollection(const GoodsCollection* goodsCollection) {
 	this->goodsCollection = goodsCollection;
 	if (goodsCollection) {
