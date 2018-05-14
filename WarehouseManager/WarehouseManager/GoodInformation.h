@@ -13,4 +13,6 @@ public:
 	GoodInformation(string name);
 	GoodInformation(string name, float weight);
 	void setWeight(float newWeight);
+	string getName() const;
+	float getWeight() const;
 };

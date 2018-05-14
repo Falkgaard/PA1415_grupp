@@ -19,6 +19,14 @@ bool Warehouse::addGoodsCollection(uint32_t floorIndex, uint32_t xPos, uint32_t 
 	return this->floors[floorIndex].addGoodsCollection(xPos, yPos);
 }
 
+const GoodsCollection* Warehouse::getGoodsCollection(uint32_t floorIndex, uint32_t xPos, uint32_t yPos) {
+	return floors[floorIndex].getGoodsCollection(xPos, yPos);
+}
+
+bool Warehouse::addGood(uint32_t floorIndex, uint32_t xPos, uint32_t yPos, Good good) {
+	return floors[floorIndex].addGood(xPos, yPos, good);
+}
+
 void Warehouse::setIdCounter(uint32_t value) {
 	Warehouse::idCounter = value;
 }

@@ -7,3 +7,7 @@ GoodsCollection::GoodsCollection(uint32_t id) : id(id) {
 void GoodsCollection::addGood(Good good) {
 	this->goods.push_back(good);
 }
+
+vector<Good> GoodsCollection::getGoods() const {
+	return goods;
+}

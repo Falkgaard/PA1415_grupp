@@ -9,46 +9,42 @@
 void setupMockWarehouse(Warehouse& warehouse);
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(800, 800), "Warehouse Manager");
-	window.resetGLStates();
+	sf::RenderWindow scrolledWindow(sf::VideoMode(800, 800), "Warehouse Manager");
+	scrolledWindow.resetGLStates();
 	sfg::SFGUI sfgui;
 	StartScreen startScreen;
-	
 	Warehouse warehouse;
 	setupMockWarehouse(warehouse);
 	WarehouseView warehouseView;
 
 	warehouseView.setWarehouse(&warehouse);
 	warehouseView.setCurrentlyDisplayedFloor(0);
-
+	startScreen.connectConnectButton([&warehouseView] {warehouseView.setVisible(true); });
 	sf::Event event;
 
 	try {
-		while (startScreen.isActive()) {
-			while (window.pollEvent(event)) {
+		while (scrolledWindow.isOpen()) {
+			while (scrolledWindow.pollEvent(event)) {
 				startScreen.handleEvent(event);
-				
+				warehouseView.handleEvent(event);
+
 				if (event.type == sf::Event::Closed) {
-					window.close();
+					scrolledWindow.close();
+				}
+				if (event.type == sf::Event::MouseButtonReleased) {
+					if (event.mouseButton.button == sf::Mouse::Left) {
+						cout << event.mouseButton.x << ", " << event.mouseButton.y << endl;
+					}
 				}
 			}
-
-			window.clear();
+			
 			startScreen.update(0.05);
-			sfgui.Display(window);
-			window.display();
-		}
+			warehouseView.update(0.05);
 
-		while (window.isOpen()) {
-			while (window.pollEvent(event)) {
-				if (event.type == sf::Event::Closed) {
-					window.close();
-				}
-			}
-
-			window.clear();
-			window.draw(warehouseView);
-			window.display();
+			scrolledWindow.clear();
+			scrolledWindow.draw(warehouseView);
+			sfgui.Display(scrolledWindow);
+			scrolledWindow.display();
 		}
 	}
 	catch (const char* e) {
@@ -68,6 +64,7 @@ void setupMockWarehouse(Warehouse& warehouse) {
 	warehouse.addShelf(currentFloor, 1, 4);
 
 	warehouse.addGoodsCollection(currentFloor, 1, 1);
+	warehouse.addGood(currentFloor, 1, 1, Good(GoodInformation("TestGood", 0.999), 11));
 	warehouse.addGoodsCollection(currentFloor, 1, 2);
 	warehouse.addGoodsCollection(currentFloor, 1, 4);
 }

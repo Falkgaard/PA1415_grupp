@@ -16,7 +16,7 @@ StartScreen::StartScreen() {
 	box->Pack(hostButton);
 	box->SetAllocation(sf::FloatRect(330,200,140,100));
 	
-	connectButton->GetSignal(sfg::Widget::OnLeftClick).Connect([&] { active = false; });
+	connectButton->GetSignal(sfg::Widget::OnLeftClick).Connect([&] { this->box->Show(false); });
 }
 
 void StartScreen::handleEvent(sf::Event& e) {
@@ -27,6 +27,10 @@ void StartScreen::update(float seconds) {
 	box->Update(seconds);
 }
 
-bool StartScreen::isActive() const {
-	return active;
+void StartScreen::connectConnectButton(function<void()> delegate) {
+	connectButton->GetSignal(sfg::Widget::OnLeftClick).Connect(delegate);
+}
+
+void StartScreen::connectHostButton(function<void()> delegate) {
+	hostButton->GetSignal(sfg::Widget::OnLeftClick).Connect(delegate);
 }

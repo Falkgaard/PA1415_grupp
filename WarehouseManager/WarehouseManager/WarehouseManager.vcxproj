@@ -133,6 +133,7 @@
     <ClInclude Include="Good.h" />
     <ClInclude Include="GoodInformation.h" />
     <ClInclude Include="GoodsCollection.h" />
+    <ClInclude Include="GoodsCollectionView.h" />
     <ClInclude Include="StartScreen.h" />
     <ClInclude Include="Warehouse.h" />
     <ClInclude Include="WarehouseView.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="Good.cpp" />
     <ClCompile Include="GoodInformation.cpp" />
     <ClCompile Include="GoodsCollection.cpp" />
+    <ClCompile Include="GoodsCollectionView.cpp" />
     <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

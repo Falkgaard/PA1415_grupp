@@ -12,4 +12,5 @@ private:
 public:
 	GoodsCollection(uint32_t id);
 	void addGood(Good good);
+	vector<Good> getGoods() const;
 };

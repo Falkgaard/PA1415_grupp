@@ -18,6 +18,9 @@ public:
 	bool addShelf(uint32_t floorIndex, uint32_t xPos, uint32_t yPos);
 	/*Requires a shelf at the position*/
 	bool addGoodsCollection(uint32_t floorIndex, uint32_t xPos, uint32_t yPos);
+	const GoodsCollection* getGoodsCollection(uint32_t floorIndex, uint32_t xPos, uint32_t yPos);
+	bool addGood(uint32_t floorIndex, uint32_t xPos, uint32_t yPos, Good good);
+	bool removeGood(uint32_t floorIndex, uint32_t xPos, uint32_t yPos, uint32_t goodIndex);
 	static void setIdCounter(uint32_t value);
 	const Floor* getFloor(uint32_t floorIndex) const;
 	uint32_t getId() const;
